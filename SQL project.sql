@@ -109,6 +109,56 @@ SELECT RoomNumber, Capacity
 FROM Classrooms
 WHERE Capacity > 30;
 
+-- 1. SELECT with WHERE: Find students enrolled after '2024-01-15'
+SELECT * 
+FROM Students 
+WHERE EnrollmentDate > '2024-01-15';
+
+-- 2. UPDATE: Update the capacity of a specific classroom
+UPDATE Classrooms 
+SET Capacity = 50 
+WHERE RoomNumber = 'A101';
+
+-- 3. DELETE: Remove a student by their StudentID
+DELETE FROM Students 
+WHERE StudentID = 2;
+
+-- 4. GROUP BY: Count students grouped by gender
+SELECT Gender, COUNT(*) AS TotalStudents
+FROM Students
+GROUP BY Gender;
+
+-- 5. ORDER BY: List all teachers ordered by their hire date
+SELECT FirstName, LastName, HireDate 
+FROM Teachers 
+ORDER BY HireDate;
+
+-- 6. ALTER TABLE: Add a new column for EmergencyContact to Students
+ALTER TABLE Students 
+ADD EmergencyContact VARCHAR(15);
+
+-- 7. WHERE with IN: Find teachers teaching Mathematics or Science
+SELECT FirstName, LastName 
+FROM Teachers 
+WHERE Subject IN ('Mathematics', 'Science');
+
+-- 8. HAVING: Find courses with more than 1 enrolled student
+SELECT c.CourseName, COUNT(e.StudentID) AS EnrolledStudents
+FROM Courses c
+JOIN Enrollments e ON c.CourseID = e.CourseID
+GROUP BY c.CourseName
+HAVING COUNT(e.StudentID) > 1;
+
+-- 9. SELECT with ORDER BY: List all courses sorted by credits (descending)
+SELECT CourseName, Credits 
+FROM Courses 
+ORDER BY Credits DESC;
+
+-- 10. DELETE: Remove all enrollments for a specific course
+DELETE FROM Enrollments 
+WHERE CourseID = 2;
+
+
 
 
 
